@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='images/cover_image.jpg') }}" alt="Plant Disease Classification" class="header-image">
+            <h1>Advanced Plant Disease Classification</h1>
+            <p>Upload an image of a plant leaf to detect potential diseases</p>
+        </header>
+        
+        <div class="upload-section">
+            <form method="POST" action="/predict" enctype="multipart/form-data">
+                <div class="file-input">
+                    <input type="file" name="file" id="file" accept="image/*" required>
+                    <label for="file">Choose a plant leaf image...</label>
+                </div>
+                <button type="submit" class="predict-btn">Analyze Image</button>
+            </form>
+        </div>
+        
+        <div class="info-section">
+            <h2>About the Project</h2>
+            <p>This web application uses a deep learning model (ResNet50V2) trained on a comprehensive dataset of plant images to identify various diseases across multiple plant species:</p>
+            <ul>
+                <li><strong>Apple Diseases:</strong> Including scab, black rot, and cedar apple rust</li>
+                <li><strong>Corn Diseases:</strong> Such as common rust, gray leaf spot, and northern leaf blight</li>
+                <li><strong>Grape Diseases:</strong> Including black rot, esca, and leaf blight</li>
+                <li><strong>Tomato Diseases:</strong> Such as early blight, late blight, and leaf mold</li>
+                <li><strong>And many more:</strong> Covering 38 different plant health conditions</li>
+            </ul>
+            <p>The model was trained on high-quality images to ensure accurate detection of various plant diseases, helping farmers and gardeners identify problems early for better crop management.</p>
+            
+            <h3>How to get the best results:</h3>
+            <ol>
+                <li>Use clear, well-lit photos of leaves</li>
+                <li>Focus on the affected area of the plant</li>
+                <li>Take photos against a neutral background when possible</li>
+                <li>Include both sides of the leaf if symptoms appear differently</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

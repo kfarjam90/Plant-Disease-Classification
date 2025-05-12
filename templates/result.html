@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Classification Result</h1>
+        </header>
+        
+        <div class="result-section">
+            <h2>Prediction: {{ prediction }} ({{ confidence }}% confidence)</h2>
+            
+            <div class="result-details">
+                <div class="probability-chart">
+                    <h3>Probability Distribution:</h3>
+                    {% for i in range(class_names|length) %}
+                    <div class="probability-row">
+                        <span class="class-name">{{ class_names[i] }}</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{ probabilities[i] }}%"></div>
+                        </div>
+                        <span class="percentage">{{ probabilities[i] }}%</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="interpretation">
+                <h3>What does this mean?</h3>
+                {% if prediction == 'Apple___Apple_scab' %}
+                    <p>The plant shows signs of Apple Scab, a fungal disease caused by Venturia inaequalis. Look for olive-green to black spots on leaves that may become velvety with spores. Fungicide applications and removal of infected leaves are recommended.</p>
+                {% elif prediction == 'Apple___Black_rot' %}
+                    <p>The plant exhibits symptoms of Black Rot, caused by the fungus Botryosphaeria obtusa. Characteristic signs include brown lesions with concentric rings on leaves and fruit. Prune infected branches and apply fungicides during wet periods.</p>
+                {% elif prediction == 'Apple___Cedar_apple_rust' %}
+                    <p>The plant shows Cedar-apple Rust infection, caused by Gymnosporangium juniperi-virginianae. Look for yellow-orange spots on leaves. Management includes removing nearby junipers (alternate host) and applying fungicides in spring.</p>
+                {% elif prediction == 'Apple___healthy' %}
+                    <p>The apple plant appears healthy with no visible signs of disease. Continue proper cultural practices including adequate spacing, proper watering, and regular monitoring.</p>
+                {% elif prediction == 'Blueberry___healthy' %}
+                    <p>The blueberry plant appears healthy with no visible signs of disease. Maintain proper soil pH (4.5-5.5) and good air circulation to prevent future disease development.</p>
+                {% elif prediction == 'Cherry_(including_sour)___Powdery_mildew' %}
+                    <p>The cherry plant shows Powdery Mildew infection, characterized by white powdery growth on leaves. Improve air circulation, avoid overhead watering, and consider fungicide applications if severe.</p>
+                {% elif prediction == 'Cherry_(including_sour)___healthy' %}
+                    <p>The cherry plant appears healthy with no visible signs of disease. Continue proper pruning and sanitation practices to maintain plant health.</p>
+                {% elif prediction == 'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot' %}
+                    <p>The corn plant shows Cercospora leaf spot or Gray leaf spot, fungal diseases causing rectangular lesions. Crop rotation and resistant varieties are recommended for management.</p>
+                {% elif prediction == 'Corn_(maize)___Common_rust_' %}
+                    <p>The corn plant exhibits Common Rust, characterized by cinnamon-brown pustules on leaves. Fungicide applications may be needed for susceptible varieties in humid conditions.</p>
+                {% elif prediction == 'Corn_(maize)___Northern_Leaf_Blight' %}
+                    <p>The corn plant shows Northern Leaf Blight, with long, elliptical gray-green lesions. Crop rotation and tillage to bury infected residue are important control measures.</p>
+                {% elif prediction == 'Corn_(maize)___healthy' %}
+                    <p>The corn plant appears healthy with no visible signs of disease. Maintain proper plant spacing and fertility for continued health.</p>
+                {% elif prediction == 'Grape___Black_rot' %}
+                    <p>The grapevine shows Black Rot infection, caused by Guignardia bidwellii. Look for brown spots on leaves with black fruiting bodies. Sanitation and timely fungicide applications are crucial.</p>
+                {% elif prediction == 'Grape___Esca_(Black_Measles)' %}
+                    <p>The grapevine exhibits Esca (Black Measles), a complex fungal disease. Symptoms include tiger-striped leaves and berry spots. Prune infected wood and protect pruning wounds.</p>
+                {% elif prediction == 'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)' %}
+                    <p>The grapevine shows Leaf Blight (Isariopsis Leaf Spot), with angular brown lesions on leaves. Improve air circulation and consider fungicide applications during wet periods.</p>
+                {% elif prediction == 'Grape___healthy' %}
+                    <p>The grapevine appears healthy with no visible signs of disease. Continue proper trellising and canopy management practices.</p>
+                {% elif prediction == 'Orange___Haunglongbing_(Citrus_greening)' %}
+                    <p>The citrus tree shows signs of Huanglongbing (Citrus Greening), a devastating bacterial disease. Look for asymmetrical leaf yellowing and small, lopsided fruit. Vector control (psyllids) and removal of infected trees are critical.</p>
+                {% elif prediction == 'Peach___Bacterial_spot' %}
+                    <p>The peach tree exhibits Bacterial Spot, with water-soaked lesions on leaves and fruit. Copper sprays during dormancy and resistant varieties are recommended for management.</p>
+                {% elif prediction == 'Peach___healthy' %}
+                    <p>The peach tree appears healthy with no visible signs of disease. Maintain proper pruning and irrigation practices.</p>
+                {% elif prediction == 'Pepper,_bell___Bacterial_spot' %}
+                    <p>The bell pepper plant shows Bacterial Spot, caused by Xanthomonas species. Look for small, water-soaked leaf spots. Use disease-free seed and practice crop rotation.</p>
+                {% elif prediction == 'Pepper,_bell___healthy' %}
+                    <p>The bell pepper plant appears healthy with no visible signs of disease. Continue proper staking and irrigation practices.</p>
+                {% elif prediction == 'Potato___Early_blight' %}
+                    <p>The potato plant exhibits Early Blight, characterized by target-like lesions on leaves. Maintain good fertility and apply fungicides preventatively.</p>
+                {% elif prediction == 'Potato___Late_blight' %}
+                    <p>The potato plant shows Late Blight, the famous disease that caused the Irish Potato Famine. Look for water-soaked lesions with white fungal growth. Fungicide applications and destruction of infected plants are critical.</p>
+                {% elif prediction == 'Potato___healthy' %}
+                    <p>The potato plant appears healthy with no visible signs of disease. Continue proper hilling and irrigation practices.</p>
+                {% elif prediction == 'Raspberry___healthy' %}
+                    <p>The raspberry plant appears healthy with no visible signs of disease. Maintain proper trellising and pruning for good air circulation.</p>
+                {% elif prediction == 'Soybean___healthy' %}
+                    <p>The soybean plant appears healthy with no visible signs of disease. Continue proper crop rotation and field sanitation practices.</p>
+                {% elif prediction == 'Squash___Powdery_mildew' %}
+                    <p>The squash plant shows Powdery Mildew, with white fungal growth on leaves. Resistant varieties and fungicide applications can help manage this common disease.</p>
+                {% elif prediction == 'Strawberry___Leaf_scorch' %}
+                    <p>The strawberry plant exhibits Leaf Scorch, with purple-brown leaf spots. Remove infected leaves and consider fungicide applications during wet periods.</p>
+                {% elif prediction == 'Strawberry___healthy' %}
+                    <p>The strawberry plant appears healthy with no visible signs of disease. Maintain proper mulching and renovation practices.</p>
+                {% elif prediction == 'Tomato___Bacterial_spot' %}
+                    <p>The tomato plant shows Bacterial Spot, with small, dark leaf lesions. Use disease-free seed and practice crop rotation to manage this disease.</p>
+                {% elif prediction == 'Tomato___Early_blight' %}
+                    <p>The tomato plant exhibits Early Blight, with target-like lesions on lower leaves. Stake plants for better air circulation and apply fungicides preventatively.</p>
+                {% elif prediction == 'Tomato___Late_blight' %}
+                    <p>The tomato plant shows Late Blight, with water-soaked lesions that rapidly expand. This destructive disease requires immediate action with fungicides and removal of infected plants.</p>
+                {% elif prediction == 'Tomato___Leaf_Mold' %}
+                    <p>The tomato plant shows Leaf Mold, with yellow upper leaf surfaces and purple-gray undersides. Improve greenhouse ventilation and reduce leaf wetness periods.</p>
+                {% elif prediction == 'Tomato___Septoria_leaf_spot' %}
+                    <p>The tomato plant exhibits Septoria Leaf Spot, with numerous small, circular leaf spots. Remove infected lower leaves and apply fungicides if needed.</p>
+                {% elif prediction == 'Tomato___Spider_mites Two-spotted_spider_mite' %}
+                    <p>The tomato plant shows signs of Two-spotted Spider Mite infestation. Look for stippling on leaves and fine webbing. Miticides or biological controls may be needed for severe infestations.</p>
+                {% elif prediction == 'Tomato___Target_Spot' %}
+                    <p>The tomato plant exhibits Target Spot, with concentric ring lesions on leaves. Improve air circulation and consider fungicide applications during humid conditions.</p>
+                {% elif prediction == 'Tomato___Tomato_Yellow_Leaf_Curl_Virus' %}
+                    <p>The tomato plant shows Tomato Yellow Leaf Curl Virus, transmitted by whiteflies. Look for upward leaf curling and yellowing. Whitefly control and resistant varieties are key management strategies.</p>
+                {% elif prediction == 'Tomato___Tomato_mosaic_virus' %}
+                    <p>The tomato plant exhibits Tomato Mosaic Virus, causing mottled leaves and stunting. Use virus-free seed and practice strict sanitation to prevent spread.</p>
+                {% elif prediction == 'Tomato___healthy' %}
+                    <p>The tomato plant appears healthy with no visible signs of disease. Continue proper staking and irrigation practices.</p>
+                {% endif %}
+            </div>
+            
+            <div class="image-section">
+                <h3>Uploaded Image:</h3>
+                <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image">
+            </div>
+            
+            <div class="note">
+    <p><strong>Note:</strong> This is an AI-assisted prediction and should not replace professional plant disease diagnosis. Always confirm with local agricultural extension services when making treatment decisions.</p>
+</div>
+            
+            <a href="/" class="back-btn">Analyze Another Image</a>
+        </div>
+    </div>
+</body>
+</html>
