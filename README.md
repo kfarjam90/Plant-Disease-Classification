@@ -2,7 +2,7 @@
 
 A Flask-based deep learning application that classifies plant leaf images into various disease categories (or healthy), providing actionable insights and disease descriptions to help farmers, gardeners, and agricultural experts.
 
-[![Watch the demo video](cover.png)](https://www.youtube.com/watch?v=3IMj5gWH3sc)
+[![Watch the demo video](cover.jpg)](https://www.youtube.com/watch?v=3IMj5gWH3sc)
 
 ## 📋 Features
 
