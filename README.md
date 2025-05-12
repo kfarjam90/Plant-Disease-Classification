@@ -37,8 +37,12 @@ Make sure the following are installed:
 git clone https://github.com/your-username/plant-disease-classifier.git
 cd plant-disease-classifier
 
-# Install dependencies
-pip install -r requirements.txt
-
 # Run the app
 python app.py
+```
+ ## 🔗 Additional Resources
+- **linkden**: [Karim Farjam's Profile](https://www.linkedin.com/in/karim-farjam-a6b72549/).
+- **Kaggle Notebook**: Interested in a Kaggle environment? Check out the notebook [here](https://www.kaggle.com/parhamfarjam).
+- **LinkedIn**: [Karim Farjam's Profile](https://www.linkedin.com/in/karim-farjam-a6b72549/)
+
+---
